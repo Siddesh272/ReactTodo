@@ -3,8 +3,7 @@ import {BrowserRouter} from 'react-router-dom'
 import {Route,Routes} from 'react-router-dom'
 import Todo from "./components/Todo";
 import Signup from "./components/Signup";
-import Login
- from "./components/Login";
+import Login from "./components/Login";
 import React,{useState,useEffect} from "react";
 import {auth} from './firebase'
 function App() {

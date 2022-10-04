@@ -1,6 +1,7 @@
 import React, { useState,useEffect} from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import {db} from '../firebase'
+
 
 let unsubscribe=()=>{}
 export default function Todo({user}) {
@@ -42,15 +43,15 @@ export default function Todo({user}) {
        })
   }
   return (
-    <div className="container">
+    <div className="container ">
       <h1>Add Todos</h1>
-    <div className="input-field">
-          <input type= "text" placeholder="add Todos" value={text} onChange={(e)=>setText(e.target.value)}/>  
+    <div className="input-field ">
+          <input type= "text" placeholder="Add Todos" value={text} onChange={(e)=>setText(e.target.value)}/>  
     </div>
     <button className="btn blue" onClick={()=>addTodo()}>Add</button>
     <ul className="collection">
        {mytodos.map(todo=>{
-            return <li className="collection-item" key={todo}>
+            return <li className="collection-item grey" key={todo}>
               {todo}
             <i className="material-icons right" onClick={()=>deleteTodo(todo)}>delete</i>
             </li>
