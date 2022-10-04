@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-
+import NavBar from "./components/NavBar";
+import {BrowserRouter} from 'react-router-dom'
+import {Route,Routes} from 'react-router-dom'
+import Todo from "./components/Todo";
+import Signup from "./components/Signup";
+import Login
+ from "./components/Login";
+import React,{useState,useEffect} from "react";
+import {auth} from './firebase'
 function App() {
+  const [user,setUser]=useState(null)
+  useEffect(()=>{
+      const unsubscribe=auth.onAuthStateChanged(user=>{
+        if(user) setUser(user)
+        else setUser(null)
+      })
+      return()=>{
+        unsubscribe()
+      }
+  },[])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <NavBar user={user}/>
+      <Routes>
+      <Route exact path="/" element={<Todo user={user}/>} /> 
+      <Route path="/login" element={<Login />} /> 
+      <Route path="/signup" element={<Signup/>} /> 
+      </Routes>
+    </BrowserRouter>
   );
 }
 
